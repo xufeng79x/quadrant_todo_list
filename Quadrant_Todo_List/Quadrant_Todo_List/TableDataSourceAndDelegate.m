@@ -43,6 +43,10 @@
     return [self initWithData:nil AndType:ZYJJ];
 }
 
+// 邮件
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"完成";
+}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -52,7 +56,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  20;
+    return  30;
 }
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,9 +73,9 @@
     }
     cell.textLabel.text=[[self.data objectAtIndex:indexPath.row] itemName];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.contentView.backgroundColor = [ UIColor greenColor ];
-    tableView.backgroundColor =[ UIColor redColor ];
-
+    // 将cell的颜色设置为无，达到和storyborad中设置的tableview背景色一致的效果
+    cell.backgroundColor = [ UIColor clearColor ];
+    
     return cell;
 }
 

@@ -33,11 +33,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initTableFacade];
     // 初始化表达内容（测试用）
     [self initTableViewConnent];
     [self initTableSourceAndDelegate];
 
 }
+
+// 初始化table的一些外观
+- (void)initTableFacade
+{
+    // 将分割线去掉
+    [self.zyjj setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.zybjj setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.bzybjj setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.bzybjj setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+}
+
+
 // 初始化表单数据源和委派
 - (void)initTableSourceAndDelegate
 {
