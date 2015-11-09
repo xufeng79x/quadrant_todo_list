@@ -34,7 +34,7 @@ static int SCREEN_WIDTH = 320;
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:15];
     [showview addSubview:label];
-    showview.frame = CGRectMake((SCREEN_WIDTH - LabelSize.width - 20)/2, SCREEN_HEIGHT - 100, LabelSize.width+20, LabelSize.height+10);
+    showview.frame = CGRectMake((SCREEN_WIDTH - LabelSize.width)/2, SCREEN_HEIGHT - 100, LabelSize.width+20, LabelSize.height+10);
     [UIView animateWithDuration:1.5 animations:^{
         showview.alpha = 0;
     } completion:^(BOOL finished) {

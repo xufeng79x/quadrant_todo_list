@@ -11,7 +11,8 @@
 #import "Utils.h"
 
 @interface EditViewController ()
-
+// 当前的时间是开始时间选择还是结束时间选择
+@property TIMESELECTOR currentTimeSelector;
 
 @end
 
@@ -36,19 +37,19 @@
     UIColor *proColor = nil;
     if(self.itemModel.priority == ZYJJ)
     {
-        proColor = [UIColor redColor];
+        proColor = self.zyjjb.backgroundColor;
     }
     else if (self.itemModel.priority == ZYBJJ)
     {
-        proColor = [UIColor orangeColor];
+        proColor = self.zybjjb.backgroundColor;
     }
     else if (self.itemModel.priority == BZYJJ)
     {
-        proColor = [UIColor yellowColor];
+        proColor = self.bzyjjb.backgroundColor;
     }
     else if (self.itemModel.priority == BZYBJJ)
     {
-        proColor = [UIColor greenColor];
+        proColor = self.bzybjjb.backgroundColor;
     }
     else{
         // do nothing
@@ -92,25 +93,79 @@
 }
 */
 
+
+- (IBAction)selectStartTime:(id)sender {
+    self.currentTimeSelector = START;
+    if (self.hiddenViewForDate.isHidden)
+    {
+        self.hiddenViewForDate.hidden = FALSE;
+    }
+}
+
+- (IBAction)selectEndTime:(id)sender {
+    self.currentTimeSelector = END;
+    if (self.hiddenViewForDate.isHidden)
+    {
+        self.hiddenViewForDate.hidden = FALSE;
+    }
+    
+    // 结束时间应该永远比开始时间要晚
+    self.datePicker.minimumDate = self.itemModel.startTime;
+    
+}
+
+//取消选定时间
+- (IBAction)cancelTime:(id)sender {
+    self.hiddenViewForDate.hidden = TRUE;
+    self.startTime.backgroundColor = [UIColor clearColor];
+    self.endTime.backgroundColor = [UIColor clearColor];
+}
+
+// 选定时间
+- (IBAction)doneTime:(id)sender {
+    self.hiddenViewForDate.hidden = TRUE;
+    if (self.currentTimeSelector == START)
+    {
+        self.itemModel.startTime = self.datePicker.date;
+        self.startTime.titleLabel.text = [self formatDate:self.itemModel.startTime];
+    }
+    else{
+        self.itemModel.endTime = self.datePicker.date;
+        self.endTime.titleLabel.text = [self formatDate:self.itemModel.endTime];
+    }
+}
+
 // 用户设定项目紧急程度按钮事件
 - (IBAction)selectZYJJ:(id)sender {
     self.itemModel.priority=ZYJJ;
-    self.thing.backgroundColor = [UIColor redColor];
+    self.thing.backgroundColor = self.zyjjb.backgroundColor;
+    
+    // 隐藏时间选择器
+    self.hiddenViewForDate.hidden = TRUE;
 }
 
 - (IBAction)selectZYBJJ:(id)sender {
     self.itemModel.priority=ZYBJJ;
-    self.thing.backgroundColor = [UIColor orangeColor];
+    self.thing.backgroundColor = self.zybjjb.backgroundColor;
+    
+    // 隐藏时间选择器
+    self.hiddenViewForDate.hidden = TRUE;
 }
 
 - (IBAction)selectBZYJJ:(id)sender {
     self.itemModel.priority=BZYJJ;
-    self.thing.backgroundColor = [UIColor yellowColor];
+    self.thing.backgroundColor = self.bzyjjb.backgroundColor;
+    
+    // 隐藏时间选择器
+    self.hiddenViewForDate.hidden = TRUE;
 }
 
 - (IBAction)selectBZYBJJ:(id)sender {
-     self.itemModel.priority=BZYBJJ;
-     self.thing.backgroundColor = [UIColor greenColor];
+     self.itemModel.priority = BZYBJJ;
+     self.thing.backgroundColor = self.bzybjjb.backgroundColor;
+    
+    // 隐藏时间选择器
+    self.hiddenViewForDate.hidden = TRUE;
 }
 
 // 保存，在保存之前需要检查
@@ -131,14 +186,7 @@
         
     }
     
-    
-    
-    // tips给用户
-    
 }
-
-
-
 
 // cancel  按钮事件，回到前一个sence
 - (IBAction)goToIndex:(id)sender {
