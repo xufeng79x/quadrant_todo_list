@@ -16,6 +16,12 @@ typedef enum {
     BZYBJJ
 } ITEMPRIORTY;
 
+// 紧急程度定义
+typedef enum {
+    START,
+    END
+} TIMESELECTOR;
+
 
 
 
