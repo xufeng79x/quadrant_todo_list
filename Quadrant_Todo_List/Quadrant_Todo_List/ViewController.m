@@ -37,8 +37,52 @@
     // 初始化表达内容（测试用）
     [self initTableViewConnent];
     [self initTableSourceAndDelegate];
+    
+    
+    
+//    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
+    self.scrolView.userInteractionEnabled = TRUE;
+    self.scrolView.scrollEnabled = TRUE;
+    self.scrolView.backgroundColor = [UIColor whiteColor];
+    self.scrolView.contentSize = CGSizeMake(320, 1000);
+//    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(testRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.scrolView addSubview:refreshControl];
+//    [scrollView addSubview:self.zyjj];
+//    [scrollView addSubview:self.zybjj];
+//    [scrollView addSubview:self.bzyjj];
+//    [scrollView addSubview:self.bzybjj];
+//    
+//    [self.view addSubview:scrollView];
 
 }
+
+
+- (void)testRefresh:(UIRefreshControl *)refreshControl
+{
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [NSThread sleepForTimeInterval:3];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM d, h:mm a"];
+            NSString *lastUpdate = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
+            
+            refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdate];
+            
+            [refreshControl endRefreshing];
+            
+            NSLog(@"refresh end");
+        });
+    });
+}
+
+
+
 
 // 初始化table的一些外观
 - (void)initTableFacade

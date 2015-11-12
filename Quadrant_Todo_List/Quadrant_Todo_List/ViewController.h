@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *bzybjj;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrolView;
 
 @end
 

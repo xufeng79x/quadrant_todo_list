@@ -18,11 +18,14 @@
 // item名称（内容）
 @property NSString *itemName;
 
- // 设定开始时间
+// 设定开始时间
 @property NSDate *startTime;
 
 // 设定结束时间
 @property NSDate *endTime;
+
+// 地点；后续接入地图使用
+@property NSString *where;
 
 // 任务优先级
 @property ITEMPRIORTY priority;
@@ -30,6 +33,14 @@
 // 原始的优先级，在用户编辑阶段可能改变优先级别，这时候需要删除原有数组内容
 // 任务优先级
 @property ITEMPRIORTY prePriority;
+
+// 分类
+@property NSString *categoryId;
+
+// 所属组的id
+@property NSString *classId;
+
+
 
 // 是否完成
 @property BOOL isFinish;
