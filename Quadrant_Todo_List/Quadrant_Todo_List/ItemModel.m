@@ -20,6 +20,7 @@
         self.itemName = content;
         self.startTime = [[NSDate alloc] init];
         self.endTime = [[NSDate alloc] init];
+        self.where = @"sz";
         self.priority = priorty;
         // 初始化的时候两者保持一致
         self.prePriority = self.priority;

@@ -17,6 +17,8 @@
 		1862B36A1BD6208E00ED4F71 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1862B3691BD6208E00ED4F71 /* Images.xcassets */; };
 		1862B36D1BD6208E00ED4F71 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862B36B1BD6208E00ED4F71 /* LaunchScreen.xib */; };
 		1862B3791BD6208E00ED4F71 /* Quadrant_Todo_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1862B3781BD6208E00ED4F71 /* Quadrant_Todo_ListTests.m */; };
+		1875DCD91BF2073200F5069B /* ItemClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1875DCD81BF2073200F5069B /* ItemClass.m */; };
+		1875DCDF1BF208B000F5069B /* ItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1875DCDE1BF208B000F5069B /* ItemCategory.m */; };
 		1880AEDB1BDD2B8D00226B2E /* 1445804261_user-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = 1880AEDA1BDD2B8D00226B2E /* 1445804261_user-alt.png */; };
 		1880AEDE1BDD2DCE00226B2E /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880AEDD1BDD2DCE00226B2E /* EditViewController.m */; };
 		1880AEE01BDD32AF00226B2E /* 1445806371_quick_restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 1880AEDF1BDD32AF00226B2E /* 1445806371_quick_restart.png */; };
@@ -55,6 +57,10 @@
 		1862B3721BD6208E00ED4F71 /* Quadrant_Todo_ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Quadrant_Todo_ListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1862B3771BD6208E00ED4F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1862B3781BD6208E00ED4F71 /* Quadrant_Todo_ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Quadrant_Todo_ListTests.m; sourceTree = "<group>"; };
+		1875DCD71BF2073200F5069B /* ItemClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemClass.h; sourceTree = "<group>"; };
+		1875DCD81BF2073200F5069B /* ItemClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemClass.m; sourceTree = "<group>"; };
+		1875DCDD1BF208B000F5069B /* ItemCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemCategory.h; path = ../ItemCategory.h; sourceTree = "<group>"; };
+		1875DCDE1BF208B000F5069B /* ItemCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemCategory.m; path = ../ItemCategory.m; sourceTree = "<group>"; };
 		1880AEDA1BDD2B8D00226B2E /* 1445804261_user-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1445804261_user-alt.png"; sourceTree = "<group>"; };
 		1880AEDC1BDD2DCE00226B2E /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		1880AEDD1BDD2DCE00226B2E /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
@@ -104,6 +110,8 @@
 		1862B3581BD6208E00ED4F71 /* Quadrant_Todo_List/Users/apple/Downloads/1445804261_user-alt.png */ = {
 			isa = PBXGroup;
 			children = (
+				1875DCDD1BF208B000F5069B /* ItemCategory.h */,
+				1875DCDE1BF208B000F5069B /* ItemCategory.m */,
 				1880AEE31BDD348200226B2E /* 1445806880_bell.png */,
 				1880AEE11BDD33C500226B2E /* 1445806692_Clock - Time.png */,
 				1880AEDF1BDD32AF00226B2E /* 1445806371_quick_restart.png */,
@@ -114,6 +122,8 @@
 				1862B36B1BD6208E00ED4F71 /* LaunchScreen.xib */,
 				185570981BDBCBC300A072BC /* Main.storyboard */,
 				183A9FC41BDE6A6300E2AAD0 /* ItemModel.h */,
+				1875DCD71BF2073200F5069B /* ItemClass.h */,
+				1875DCD81BF2073200F5069B /* ItemClass.m */,
 				183A9FC51BDE6A6300E2AAD0 /* ItemModel.m */,
 				1862B3631BD6208E00ED4F71 /* ViewController.h */,
 				1862B3641BD6208E00ED4F71 /* ViewController.m */,
@@ -263,10 +273,12 @@
 			files = (
 				183A9FC61BDE6A6300E2AAD0 /* ItemModel.m in Sources */,
 				1862B35F1BD6208E00ED4F71 /* AppDelegate.m in Sources */,
+				1875DCDF1BF208B000F5069B /* ItemCategory.m in Sources */,
 				1862B3621BD6208E00ED4F71 /* Quadrant_Todo_List.xcdatamodeld in Sources */,
 				1896F7E91BEAFF12007A5B1A /* Utils.m in Sources */,
 				1862B3651BD6208E00ED4F71 /* ViewController.m in Sources */,
 				1862B35C1BD6208E00ED4F71 /* main.m in Sources */,
+				1875DCD91BF2073200F5069B /* ItemClass.m in Sources */,
 				18576DA11BDFB1A90020E926 /* TableDataSourceAndDelegate.m in Sources */,
 				1880AEDE1BDD2DCE00226B2E /* EditViewController.m in Sources */,
 			);

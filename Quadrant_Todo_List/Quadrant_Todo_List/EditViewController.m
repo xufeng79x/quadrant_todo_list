@@ -27,6 +27,7 @@
     {
         self.itemModel = [[ItemModel alloc] init];
     }
+
     
     [self printViewStyle];
 }
@@ -66,7 +67,7 @@
     
     // 设定开始时间和结束时间的内容
     [self.startTime setTitle: [self formatDate:self.itemModel.startTime] forState:UIControlStateNormal];
-    [self.endTime setTitle: [self formatDate:self.itemModel.startTime] forState:UIControlStateNormal];
+    [self.endTime setTitle: [self formatDate:self.itemModel.endTime] forState:UIControlStateNormal];
     
 }
 
@@ -84,14 +85,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 - (IBAction)selectStartTime:(id)sender {
@@ -100,6 +101,9 @@
     {
         self.hiddenViewForDate.hidden = FALSE;
     }
+    
+    // 结束时间应该永远比开始时间要晚
+    self.datePicker.minimumDate = [[NSDate alloc] init];
 }
 
 - (IBAction)selectEndTime:(id)sender {
@@ -161,8 +165,8 @@
 }
 
 - (IBAction)selectBZYBJJ:(id)sender {
-     self.itemModel.priority = BZYBJJ;
-     self.thing.backgroundColor = self.bzybjjb.backgroundColor;
+    self.itemModel.priority = BZYBJJ;
+    self.thing.backgroundColor = self.bzybjjb.backgroundColor;
     
     // 隐藏时间选择器
     self.hiddenViewForDate.hidden = TRUE;
