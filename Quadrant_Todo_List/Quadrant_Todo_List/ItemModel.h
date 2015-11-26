@@ -34,14 +34,6 @@
 // 任务优先级
 @property ITEMPRIORTY prePriority;
 
-// 分类
-@property NSString *categoryId;
-
-// 所属组的id
-@property NSString *classId;
-
-
-
 // 是否完成
 @property BOOL isFinish;
 
