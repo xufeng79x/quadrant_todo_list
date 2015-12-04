@@ -20,10 +20,10 @@
 @interface IndexViewController ()
 
 // 四象限待完成事项
-@property (nonatomic, copy) NSMutableArray *zyjjConnent;
-@property (nonatomic, copy) NSMutableArray *zybjjConnent;
-@property (nonatomic, copy) NSMutableArray *bzyjjConnent;
-@property (nonatomic, copy) NSMutableArray *bzybjjConnent;
+@property (nonatomic, strong) NSMutableArray *zyjjConnent;
+@property (nonatomic, strong) NSMutableArray *zybjjConnent;
+@property (nonatomic, strong) NSMutableArray *bzyjjConnent;
+@property (nonatomic, strong) NSMutableArray *bzybjjConnent;
 
 // 四象限表格的委派类
 @property (nonatomic, strong) TableDataSourceAndDelegate *zyjjTableDataSourceAndDelegate;
@@ -49,6 +49,7 @@
  *  画面初始化入口方法
  */
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     
     // 初始化内部数据
@@ -76,7 +77,7 @@
     
     // 计算出当前设备的型号
     UIScreen *screen = [UIScreen mainScreen];
-          if ((int) screen.bounds.size.width == IPHONE_WIDTH)
+          if ((int) screen.bounds.size.width == IPHONE6_WIDTH)
           {
               self.deviceType = IPhone6;
           }
@@ -148,18 +149,18 @@
     ItemModel *itemModel = nil;
     TableDataSourceAndDelegate *tempSd = nil;
     EditViewController *destViewController = segue.destinationViewController;
-    if ([segue.identifier isEqualToString:@"showSeque_zyjj"]) {
+    if ([segue.identifier isEqualToString:@"zyjj_seque"]) {
         tempSd = self.zyjjTableDataSourceAndDelegate;
     }
-    else if([segue.identifier isEqualToString:@"showSeque_zybjj"])
+    else if([segue.identifier isEqualToString:@"zybjj_seque"])
     {
         tempSd = self.zybjjTableDataSourceAndDelegate;
     }
-    else if([segue.identifier isEqualToString:@"showSeque_bzyjj"])
+    else if([segue.identifier isEqualToString:@"bzyjj_seque"])
     {
         tempSd = self.bzyjjTableDataSourceAndDelegate;
     }
-    else if([segue.identifier isEqualToString:@"showSeque_bzybjj"])
+    else if([segue.identifier isEqualToString:@"bzybjj_seque"])
     {
         tempSd = self.bzybjjTableDataSourceAndDelegate;
     }
@@ -182,10 +183,29 @@
     if (item == nil) {
         return;
     }
-    
     // 首先删除原有优先级中此项目的table内容
     TableDataSourceAndDelegate *preTdd = [self getTableDataSourceAndDelegateByProperty:item.prePriority];
     TableDataSourceAndDelegate *nowTdd = [self getTableDataSourceAndDelegateByProperty:item.priority];
+    [item balanceProperty];
+    
+    int affectedRows = 0;
+    // 当id为nill  说明是新增事项
+    if (nil == item.id) {
+        // 分配id
+        item.id = [[NSUUID UUID] UUIDString];
+        affectedRows = [ItemPersistance operatItem:[item insertQuery]];
+    }
+    else
+    {
+        affectedRows = [ItemPersistance operatItem:[item updateQuery]];
+    }
+    
+    if (affectedRows <= 0)
+    {
+        return;
+    }
+    
+
     
     // 1.需要删除前状态委派对象数据
     [preTdd deleteData:item];
@@ -297,15 +317,31 @@
     [self makeIndexUILayoutByStatus:ZYJJ_UI];
 }
 
+/**
+ *  扩展重要不紧急区域
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)expandZybjjArea:(id)sender
 {
     [self makeIndexUILayoutByStatus:ZYBJJ_UI];
 }
 
+/**
+ *  扩展不重要紧急区域
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)expandBzyjjArea:(id)sender
 {
     [self makeIndexUILayoutByStatus:BZYJJ_UI];
 }
+
+/**
+ *  扩展不重要不紧急区域
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)expandBzybjjArea:(id)sender
 {
      [self makeIndexUILayoutByStatus:BZYBJJ_UI];
@@ -379,7 +415,6 @@
             case ZYBJJ_UI:
                 self.returnBtn.hidden = FALSE;
                 
-                
                 self.zyjjBt.frame = CGRectMake(0, 64, 37, 571);
                 self.zyjjBt.titleLabel.hidden = YES;
                 self.zyjj.hidden = TRUE;
@@ -400,7 +435,6 @@
                 
             case BZYJJ_UI:
                 self.returnBtn.hidden = FALSE;
-                
                 
                 self.zyjjBt.frame = CGRectMake(0, 64, 337, 31);
                 self.zyjjBt.titleLabel.hidden = YES;
@@ -449,6 +483,12 @@
         
     }
 }
+
+/**
+ *  返回到初始化状态界面
+ *
+ *  @param sender <#sender description#>
+ */
 - (IBAction)returndefaultUI:(id)sender {
     [self makeIndexUILayoutByStatus:NONE_UI];
 }

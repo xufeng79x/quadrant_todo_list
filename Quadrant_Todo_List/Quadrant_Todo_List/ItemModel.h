@@ -58,6 +58,12 @@
 // 将前优先级设定为当前优先级
 - (void) balanceProperty;
 
+// 获取插入语句
+- (NSString *) insertQuery;
+
+// 获取更新语句
+- (NSString *) updateQuery;
+
 
 
 @end

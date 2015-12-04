@@ -36,4 +36,6 @@
 
 - (IBAction)timeBtnClick:(id)sender;
 
+- (IBAction)save:(id)sender;
+
 @end

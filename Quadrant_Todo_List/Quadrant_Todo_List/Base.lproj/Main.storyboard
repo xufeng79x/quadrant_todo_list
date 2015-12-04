@@ -288,7 +288,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="任务设置" id="h0X-dp-1zT">
                         <barButtonItem key="backBarButtonItem" title="返回" id="07u-T4-m3V"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Rgq-OI-o81"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Rgq-OI-o81">
+                            <connections>
+                                <action selector="save:" destination="9ZL-vr-aqe" id="a9d-VZ-xhR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -296,13 +300,14 @@
                         <outlet property="bzyjjBtn" destination="ahF-Pe-zCv" id="fvV-Hy-T52"/>
                         <outlet property="infoLab" destination="oMy-Rq-0p0" id="r8H-aK-E3b"/>
                         <outlet property="inputLab" destination="xrm-4O-UTA" id="X8g-sa-k7x"/>
-                        <outlet property="save" destination="Rgq-OI-o81" id="G84-yg-m1v"/>
                         <outlet property="timebtn" destination="Dhq-CA-kif" id="I1d-iQ-gSh"/>
                         <outlet property="zybjjBtn" destination="yCd-JC-lpC" id="7yA-c6-fVx"/>
                         <outlet property="zyjjBtn" destination="pi4-et-Otd" id="ob6-A8-Lpi"/>
+                        <segue destination="JjG-AT-mc1" kind="unwind" identifier="EditUnwindToIndex" unwindAction="saveOrChangeItem:" id="4Ce-gJ-ROR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OjG-GJ-JXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="JjG-AT-mc1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2379.5" y="565.5"/>
         </scene>
@@ -318,7 +323,7 @@
                             <tableViewSection id="RmW-1f-mBc">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="Ork-64-Pin">
-                                        <rect key="frame" x="0.0" y="99" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ork-64-Pin" id="Cii-mr-az1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
@@ -342,14 +347,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="230" id="fI2-Ks-8Gr">
-                                        <rect key="frame" x="0.0" y="139" width="375" height="230"/>
+                                        <rect key="frame" x="0.0" y="75" width="375" height="230"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fI2-Ks-8Gr" id="dgl-eY-8eU">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="229.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="fDD-OO-Oeo">
-                                                    <rect key="frame" x="0.0" y="7" width="375" height="216"/>
+                                                    <rect key="frame" x="0.0" y="8" width="375" height="215"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="470713813.54554498">
                                                         <!--2015-12-02 01:50:13 +0000-->
@@ -362,7 +367,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="CJx-OP-plZ">
-                                        <rect key="frame" x="0.0" y="369" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="305" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CJx-OP-plZ" id="CvR-in-rJg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
@@ -386,14 +391,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="230" id="Q9e-qO-n9b">
-                                        <rect key="frame" x="0.0" y="409" width="375" height="230"/>
+                                        <rect key="frame" x="0.0" y="345" width="375" height="230"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q9e-qO-n9b" id="CQ8-IU-GLO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="229.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="IEL-Mb-b0G">
-                                                    <rect key="frame" x="0.0" y="7" width="375" height="216"/>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" id="IEL-Mb-b0G">
+                                                    <rect key="frame" x="0.0" y="8" width="375" height="221"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="470728293.69435197">
                                                         <!--2015-12-02 05:51:33 +0000-->
@@ -465,6 +470,6 @@
         <image name="return.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uAJ-Pa-4sa"/>
+        <segue reference="0jF-vT-bZb"/>
     </inferredMetricsTieBreakers>
 </document>

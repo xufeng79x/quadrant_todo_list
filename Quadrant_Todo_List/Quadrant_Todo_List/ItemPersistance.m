@@ -42,5 +42,13 @@
 }
 
 
-
++ (int) operatItem:(NSString *)query
+{
+    // 数据库客户端操作-打开
+    DBManager *dbm = [[DBManager alloc] initWithDatabaseFilename:@"quadrant.sql"];
+    
+    // 数据库客户端操作-查询
+    [dbm executeQuery:query];
+    return dbm.affectedRows;
+}
 @end

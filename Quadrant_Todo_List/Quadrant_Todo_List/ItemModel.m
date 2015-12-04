@@ -65,7 +65,8 @@
                         self.where = [rowDict objectForKey:@"address"];
         
         // 优先级
-        self.priority = [[rowDict objectForKey:@"priorty"] intValue];
+        self.priority = [[rowDict objectForKey:@"priority"] intValue];;
+
         
         // 初始化的时候两者保持一致
         self.prePriority = self.priority;
@@ -140,6 +141,31 @@
 - (void) balanceProperty
 {
     self.prePriority = self.priority;
+}
+
+// 获取插入语句
+- (NSString *) insertQuery
+{
+    return [NSString stringWithFormat:@"insert into ItemModel VALUES ('%@', '%@', '%@' ,%d,%d, '%@', '%@')",
+            self.id,
+            self.itemName,
+            self.where,
+            self.priority,
+            self.prePriority,
+            [Utils dateToString:self.startTime withFormat:@"yyyy-MM-dd HH:mm"],
+            [Utils dateToString:self.endTime withFormat:@"yyyy-MM-dd HH:mm"]];
+}
+
+// 获取更新语句
+- (NSString *) updateQuery
+{
+    return [NSString stringWithFormat:@"update ItemModel set itemName='%@', address='%@', priority=%d, prePriority=%d, startTime='%@', endTime='%@' where id='%@'",
+            self.itemName,
+            self.where,
+            self.priority,
+            self.prePriority,
+            [Utils dateToString:self.startTime withFormat:@"yyyy-MM-dd HH:mm"],
+            [Utils dateToString:self.endTime withFormat:@"yyyy-MM-dd HH:mm"], self.id];
 }
 
 @end

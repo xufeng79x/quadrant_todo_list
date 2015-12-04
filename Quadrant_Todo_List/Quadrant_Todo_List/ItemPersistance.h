@@ -11,5 +11,5 @@
 
 @interface ItemPersistance : NSObject
 + (NSMutableArray *) getItemcontentByPriorty:(ITEMPRIORTY)priorty;
-
++ (int) operatItem:(NSString *)query;
 @end

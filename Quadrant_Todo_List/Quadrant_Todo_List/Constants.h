@@ -9,7 +9,7 @@
 #ifndef Quadrant_Todo_List_Constants_h
 #define Quadrant_Todo_List_Constants_h
 
-#define IPHONE_WIDTH 375
+#define IPHONE6_WIDTH 375
 
 /**
  紧急程度定义

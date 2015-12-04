@@ -182,10 +182,33 @@ CGRect proBtnFrameArr[4];
 /**
  *  时间选择按钮按下事件
  *
- *  @param sender <#sender description#>
+ *  @param sender sender description
  */
 - (IBAction)timeBtnClick:(id)sender {
     
+}
+
+
+/**
+ *  
+ *
+ *  @param sender <#sender description#>
+ */
+- (IBAction)save:(id)sender {
+    // 需要将输入框中的文字赋给对象
+    self.itemModel.itemName=self.inputLab.text;
+    // 检查输入项目是否符合要求
+    NSString *message = [self.itemModel isInvaild];
+    // 当没有错误返回值的时候说明可以数据有效
+    if (message == nil || message.length == 0)
+    {
+        [self performSegueWithIdentifier:@"EditUnwindToIndex" sender:self];
+    }
+    else
+    {
+        [Utils showMessage:message];
+        
+    }
 }
 
 /**
@@ -202,7 +225,7 @@ CGRect proBtnFrameArr[4];
     }
 }
 
-// 当在编辑sence点击保存的时候出发
+// UNwind方法，当在时间选择确定后调用此方法
 - (IBAction)saveTime:(UIStoryboardSegue *)segue
 {
     TimeTableTableViewController *source = [segue sourceViewController];
