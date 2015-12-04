@@ -11,75 +11,34 @@
 #import "DBManager.h"
 
 @implementation ItemPersistance
-+ (NSMutableArray *) getItemcontentByPriorty:(ITEMPRIORTY)priorty
+/**
+ *  根据优先级取得对应的item数据
+ *
+ *  @param tPriorty 优先级
+ *
+ *  @return 当前优先级下的所有未完成item
+ */
++ (NSMutableArray *) getItemcontentByPriorty:(ITEMPRIORTY)tPriorty
 {
-    NSMutableArray *connent = [[NSMutableArray alloc] init];
-    //  初始化表单内容
-    if (ZYJJ == priorty)
-    {
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_1" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_2" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_3" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_4" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_5" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_6" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_7" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_8" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_9" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_10" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_11" And:ZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zyjj_12" And:ZYJJ]];
-    }
+    // 查询语句
+    NSString *query =[NSString stringWithFormat: @"select * from ItemModel where priority = %d", tPriorty ];
     
-    if (ZYBJJ == priorty)
-    {
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_1" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_2" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_3" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_4" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_5" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_6" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_7" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_8" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_9" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_10" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_11" And:ZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"zybjj_12" And:ZYBJJ]];
-    }
+    // 数据库客户端操作-打开
+    DBManager *dbm = [[DBManager alloc] initWithDatabaseFilename:@"quadrant.sql"];
     
-    if (BZYJJ == priorty)
-    {
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_1" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_2" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_3" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_4" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_5" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_6" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_7" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_8" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_9" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_10" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_11" And:BZYJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzyjj_12" And:BZYJJ]];
-    }
+    // 数据库客户端操作-查询
+    NSArray  *result = [dbm loadDataFromDB:query];
+    ItemModel *loopItem = nil;
     
-    if (BZYBJJ == priorty)
+    // 每行既是一个item，将其转化为具体的对象
+    NSMutableArray *resultArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *rowDict in result)
     {
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_1" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_2" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_3" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_4" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_5" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_6" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_7" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_8" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_9" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_10" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_11" And:BZYBJJ]];
-        [connent addObject:[[ItemModel alloc] initWithDefault:@"bzybjj_12" And:BZYBJJ]];
+        loopItem = [[ItemModel alloc] initWithDBResult:rowDict];
+        [resultArray addObject:loopItem];
     }
 
-    return connent;
+    return resultArray;
 }
 
 

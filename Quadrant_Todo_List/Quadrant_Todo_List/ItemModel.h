@@ -40,11 +40,17 @@
 // 自定义初始化方法
 -(id) initWithDefault:(NSString *) content And:(ITEMPRIORTY) priorty;
 
+// 通过数据库中查询到的数据进行构造
+-(id) initWithDBResult:(NSDictionary *)rowDict;
+
 // 重写初始化方法
 -(id) init;
 
 // 查看当前数据是否有效
 -(NSString *) isInvaild;
+
+// 查看当前日期是否符合规定
+- (NSString *)isDateInvaild;
 
 //查看优先级别是否已经被修改过
 - (BOOL) isPropertyChanged;

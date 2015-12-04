@@ -66,17 +66,12 @@
     
     
     // 设定开始时间和结束时间的内容
-    [self.startTime setTitle: [self formatDate:self.itemModel.startTime] forState:UIControlStateNormal];
-    [self.endTime setTitle: [self formatDate:self.itemModel.endTime] forState:UIControlStateNormal];
+    [self.startTime setTitle: [Utils dateToString:self.itemModel.startTime withFormat:@"yyyy-MM-dd HH:mm:ss"] forState:UIControlStateNormal];
+    [self.endTime setTitle: [Utils dateToString:self.itemModel.endTime withFormat:@"yyyy-MM-dd HH:mm:ss"] forState:UIControlStateNormal];
     
 }
 
--(NSString *)formatDate:(NSDate *)date
-{
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [format stringFromDate:date];
-}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -131,11 +126,11 @@
     if (self.currentTimeSelector == START)
     {
         self.itemModel.startTime = self.datePicker.date;
-        self.startTime.titleLabel.text = [self formatDate:self.itemModel.startTime];
+        self.startTime.titleLabel.text = [Utils dateToString:self.itemModel.startTime withFormat:@"yyyy-MM-dd HH:mm:ss"];
     }
     else{
         self.itemModel.endTime = self.datePicker.date;
-        self.endTime.titleLabel.text = [self formatDate:self.itemModel.endTime];
+        self.endTime.titleLabel.text = [Utils dateToString:self.itemModel.endTime withFormat:@"yyyy-MM-dd HH:mm:ss"];
     }
 }
 

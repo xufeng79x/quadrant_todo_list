@@ -87,7 +87,7 @@
     
     
     // Open the database.
-    BOOL openDatabaseResult = sqlite3_open([databasePath UTF8String], &sqlite3Database);
+    int openDatabaseResult = sqlite3_open([databasePath UTF8String], &sqlite3Database);
     if(openDatabaseResult == SQLITE_OK) {
         // Declare a sqlite3_stmt object in which will be stored the query after having been compiled into a SQLite statement.
         sqlite3_stmt *compiledStatement;
@@ -160,7 +160,6 @@
         
         // Release the compiled statement from memory.
         sqlite3_finalize(compiledStatement);
-        
     }
     
     // Close the database.

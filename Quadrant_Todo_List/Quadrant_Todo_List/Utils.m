@@ -48,6 +48,25 @@ static int SCREEN_WIDTH = 375;
     }];
 }
 
++(NSDate *)stringToDate:(NSString *)dateStr withFormat:(NSString *)formator
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat : formator];
+    
+    return [formatter dateFromString:dateStr];
+}
+
+
++(NSString *)dateToString:(NSDate *)date withFormat:(NSString *)formator
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:formator];
+    return [format stringFromDate:date];
+}
+
+
+
+
 
 
 @end

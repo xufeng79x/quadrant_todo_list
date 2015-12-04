@@ -62,11 +62,6 @@
     
     // 初始化数据代理
     [self initTableSourceAndDelegate];
-    
-    
-    float aFloat = -21.09f;
-    NSLog(@"%f", aFloat);
-    NSLog(@"%8.2f", aFloat);
 
 }
 

@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		183A9FC61BDE6A6300E2AAD0 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A9FC51BDE6A6300E2AAD0 /* ItemModel.m */; };
+		184C25D61C0DD55600A731E9 /* TimeTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C25D51C0DD55600A731E9 /* TimeTableTableViewController.m */; };
 		184CBCEF1C05FF72006986F6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184CBCEE1C05FF72006986F6 /* libsqlite3.tbd */; };
 		184CBCF31C0602AE006986F6 /* quadrant.sql in Resources */ = {isa = PBXBuildFile; fileRef = 184CBCF21C0602AE006986F6 /* quadrant.sql */; };
 		184CBCF61C060824006986F6 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CBCF51C060824006986F6 /* DBManager.m */; };
+		184EB8EF1C069A1700B429E9 /* ddl.txt in Resources */ = {isa = PBXBuildFile; fileRef = 184EB8EE1C069A1700B429E9 /* ddl.txt */; };
 		185027491C03661A006BF8EE /* EditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185027481C03661A006BF8EE /* EditTableViewController.m */; };
 		1855709A1BDBCBC300A072BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185570981BDBCBC300A072BC /* Main.storyboard */; };
 		18576DA11BDFB1A90020E926 /* TableDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18576DA01BDFB1A90020E926 /* TableDataSourceAndDelegate.m */; };
@@ -44,10 +46,13 @@
 		1801F1AD1BE2762300B8B7F0 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		183A9FC41BDE6A6300E2AAD0 /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
 		183A9FC51BDE6A6300E2AAD0 /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
+		184C25D41C0DD55600A731E9 /* TimeTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableTableViewController.h; sourceTree = "<group>"; };
+		184C25D51C0DD55600A731E9 /* TimeTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTableTableViewController.m; sourceTree = "<group>"; };
 		184CBCEE1C05FF72006986F6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		184CBCF21C0602AE006986F6 /* quadrant.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = quadrant.sql; sourceTree = "<group>"; };
 		184CBCF41C060824006986F6 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		184CBCF51C060824006986F6 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		184EB8EE1C069A1700B429E9 /* ddl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ddl.txt; sourceTree = "<group>"; };
 		185027471C03661A006BF8EE /* EditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewController.h; sourceTree = "<group>"; };
 		185027481C03661A006BF8EE /* EditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewController.m; sourceTree = "<group>"; };
 		185570991BDBCBC300A072BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,9 +102,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184899D01C0D8F4600D0977B /* time_select_page */ = {
+			isa = PBXGroup;
+			children = (
+				184899D21C0D8F7000D0977B /* class */,
+				184899D11C0D8F6800D0977B /* resource */,
+			);
+			name = time_select_page;
+			sourceTree = "<group>";
+		};
+		184899D11C0D8F6800D0977B /* resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = resource;
+			sourceTree = "<group>";
+		};
+		184899D21C0D8F7000D0977B /* class */ = {
+			isa = PBXGroup;
+			children = (
+				184899D41C0D8F7D00D0977B /* controller */,
+				184899D31C0D8F7700D0977B /* view */,
+			);
+			name = class;
+			sourceTree = "<group>";
+		};
+		184899D31C0D8F7700D0977B /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		184899D41C0D8F7D00D0977B /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				184C25D41C0DD55600A731E9 /* TimeTableTableViewController.h */,
+				184C25D51C0DD55600A731E9 /* TimeTableTableViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
 		184EC65C1BF6424C00F18ADB /* pages */ = {
 			isa = PBXGroup;
 			children = (
+				184899D01C0D8F4600D0977B /* time_select_page */,
 				184EC6641BF6438100F18ADB /* edit_index_page */,
 				184EC65D1BF6426F00F18ADB /* index_page */,
 			);
@@ -262,6 +309,7 @@
 		1862B3591BD6208E00ED4F71 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				184EB8EE1C069A1700B429E9 /* ddl.txt */,
 				184CBCF21C0602AE006986F6 /* quadrant.sql */,
 				184CBCEE1C05FF72006986F6 /* libsqlite3.tbd */,
 				1862B35A1BD6208E00ED4F71 /* Info.plist */,
@@ -379,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1862B36D1BD6208E00ED4F71 /* LaunchScreen.xib in Resources */,
+				184EB8EF1C069A1700B429E9 /* ddl.txt in Resources */,
 				1862B36A1BD6208E00ED4F71 /* Images.xcassets in Resources */,
 				184CBCF31C0602AE006986F6 /* quadrant.sql in Resources */,
 				18A926541C0433E90062DB32 /* return.png in Resources */,
@@ -410,6 +459,7 @@
 				1884E1641C0210910067D53A /* ItemPersistance.m in Sources */,
 				1896F7E91BEAFF12007A5B1A /* Utils.m in Sources */,
 				1862B3651BD6208E00ED4F71 /* IndexViewController.m in Sources */,
+				184C25D61C0DD55600A731E9 /* TimeTableTableViewController.m in Sources */,
 				184CBCF61C060824006986F6 /* DBManager.m in Sources */,
 				1862B35C1BD6208E00ED4F71 /* main.m in Sources */,
 				18576DA11BDFB1A90020E926 /* TableDataSourceAndDelegate.m in Sources */,

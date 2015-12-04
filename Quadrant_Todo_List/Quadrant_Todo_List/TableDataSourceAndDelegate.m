@@ -94,9 +94,9 @@
 
 
 // 删除数据
--(void)deleteData:(ItemModel *)newModel
+-(void)deleteData:(ItemModel *)model
 {
-    if (nil == newModel)
+    if (nil == model)
     {
         return;
     }
@@ -105,7 +105,7 @@
     
     for (ItemModel * model in self.data)
     {
-        if ([model.id isEqualToString:newModel.id])
+        if ([model.id isEqualToString:model.id])
         {
             temp = model;
             break;
