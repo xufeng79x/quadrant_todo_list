@@ -15,7 +15,7 @@
 -(id)initWithData:(NSMutableArray *) sourceData AndType:(ITEMPRIORTY) tPriorty;
 -(id)init;
 -(ItemModel *)getSelectedItem;
--(void)deleteData:(ItemModel *)newModel;
+-(void)deleteData:(ItemModel *)moodel;
 -(void)addData:(ItemModel *)newModel;
 
 

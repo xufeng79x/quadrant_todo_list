@@ -7,16 +7,25 @@
 //
 
 #import "ItemModel.h"
+#import "Utils.h"
 
 @implementation ItemModel
 
+/**
+ *  默认构造
+ *
+ *  @param content item内容
+ *  @param priorty 优先级
+ *
+ *  @return item实例
+ */
 -(id) initWithDefault:(NSString *) content And:(ITEMPRIORTY) priorty
 {
     self = [super init];
     if (self)
     {
         // id生成
-        self.id = [[NSUUID UUID] UUIDString];
+        self.id = nil;
         self.itemName = content;
         self.startTime = [[NSDate alloc] init];
         self.endTime = [[NSDate alloc] init];
@@ -30,19 +39,54 @@
     return self;
 }
 
+/**
+ *  通过数据库中查询到的数据进行构造
+ *
+ *  @param rowDict 每一行数据的字典结构
+ *
+ *  @return 转换后的item实例
+ */
+-(id) initWithDBResult:(NSDictionary *)rowDict
+{
+    self = [super init];
+    if (self)
+    {
+        // id生成
+        self.id = [rowDict objectForKey:@"id"];
+        
+        // 内容
+        self.itemName = [rowDict objectForKey:@"itemName"];
+        
+        // 开始时间
+        self.startTime = [Utils stringToDate:[rowDict objectForKey:@"startTime"] withFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        // 结束时间
+        self.endTime = [Utils stringToDate:[rowDict objectForKey:@"endTime"] withFormat:@"yyyy-MM-dd HH:mm:ss"];
+                        self.where = [rowDict objectForKey:@"address"];
+        
+        // 优先级
+        self.priority = [[rowDict objectForKey:@"priority"] intValue];;
+
+        
+        // 初始化的时候两者保持一致
+        self.prePriority = self.priority;
+    }
+    
+    return self;
+}
+
+/**
+ *  重写当前的init方法
+ *
+ *  @return <#return value description#>
+ */
 -(id) init
 {
     return [self initWithDefault:@"" And:ZYJJ];
 }
 
-// 检查当前数据是否有效
--(NSString *) isInvaild
+- (NSString *)isDateInvaild
 {
-    if (self.itemName.length == 0)
-    {
-        return @"please input the item!";
-    }
-    
     if (self.startTime == nil)
     {
         return @"please input the startTime!";
@@ -60,21 +104,68 @@
     }
     
     return nil;
+}
+
+/**
+ *  检查当前数据是否有效
+ *
+ *  @return  nil：有效 非nil：具体错误信息
+ */
+-(NSString *) isInvaild
+{
+    if (self.itemName.length == 0)
+    {
+        return @"please input the item!";
+    }
+    
+    return [self isDateInvaild];
     
 }
 
 
-//查看优先级别是否已经被修改过
+
+/**
+ *  查看优先级别是否已经被修改过
+ *
+ *  @return true:已经被修改  false：未被修改
+ */
 - (BOOL) isPropertyChanged
 {
     return !(self.prePriority == self.priority);
     
 }
 
-// 将前优先级设定为当前优先级
+/**
+ *  将前优先级设定为当前优先级
+ */
 - (void) balanceProperty
 {
     self.prePriority = self.priority;
+}
+
+// 获取插入语句
+- (NSString *) insertQuery
+{
+    return [NSString stringWithFormat:@"insert into ItemModel VALUES ('%@', '%@', '%@' ,%d,%d, '%@', '%@')",
+            self.id,
+            self.itemName,
+            self.where,
+            self.priority,
+            self.prePriority,
+            [Utils dateToString:self.startTime withFormat:@"yyyy-MM-dd HH:mm"],
+            [Utils dateToString:self.endTime withFormat:@"yyyy-MM-dd HH:mm"]];
+}
+
+// 获取更新语句
+- (NSString *) updateQuery
+{
+    return [NSString stringWithFormat:@"update ItemModel set itemName='%@', address='%@', priority=%d, prePriority=%d, startTime='%@', endTime='%@' where id='%@'",
+            self.itemName,
+            self.where,
+            self.priority,
+            self.prePriority,
+            [Utils dateToString:self.startTime withFormat:@"yyyy-MM-dd HH:mm"],
+            [Utils dateToString:self.endTime withFormat:@"yyyy-MM-dd HH:mm"], self.id];
 }
 
 @end

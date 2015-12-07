@@ -7,13 +7,19 @@
 //
 
 #import "Utils.h"
+#import "IndexViewController.h"
 
-static int SCREEN_HEIGHT = 600;
-static int SCREEN_WIDTH = 320;
+static int SCREEN_HEIGHT = 667;
+static int SCREEN_WIDTH = 375;
 
 @implementation Utils
 
 
+/**
+ *  淡化用提示框实现
+ *
+ *  @param message 提示信息
+ */
 +(void)showMessage:(NSString *)message
 {
     UIWindow * window = [UIApplication sharedApplication].keyWindow;
@@ -41,4 +47,26 @@ static int SCREEN_WIDTH = 320;
         [showview removeFromSuperview];
     }];
 }
+
++(NSDate *)stringToDate:(NSString *)dateStr withFormat:(NSString *)formator
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat : formator];
+    
+    return [formatter dateFromString:dateStr];
+}
+
+
++(NSString *)dateToString:(NSDate *)date withFormat:(NSString *)formator
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:formator];
+    return [format stringFromDate:date];
+}
+
+
+
+
+
+
 @end

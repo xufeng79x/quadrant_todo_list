@@ -8,6 +8,7 @@
 
 #import "TableDataSourceAndDelegate.h"
 #import "EditViewController.h"
+#import "ItemPersistance.h"
 
 @interface TableDataSourceAndDelegate()
     @property NSMutableArray *data;
@@ -24,7 +25,8 @@
     self = [super init];
     if (self)
     {
-        NSMutableArray *tempSourceData = sourceData;
+        NSMutableArray *tempSourceData = nil;
+        tempSourceData = sourceData;
         if (nil == tempSourceData)
         {
             tempSourceData = [[NSMutableArray alloc] init];
@@ -50,7 +52,13 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.data removeObjectAtIndex:indexPath.row];
+    NSString * query = [NSString stringWithFormat:@"delete from ItemModel where id='%@'", [[self.data objectAtIndex:(NSUInteger)indexPath.row] id]];
+    if ([ItemPersistance operatItem:query] <= 0)
+    {
+        return;
+    }
+    
+    [self.data removeObjectAtIndex:(NSUInteger)indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                      withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -94,20 +102,20 @@
 
 
 // 删除数据
--(void)deleteData:(ItemModel *)newModel
+-(void)deleteData:(ItemModel *)model
 {
-    if (nil == newModel)
+    if (nil == model)
     {
         return;
     }
     ItemModel * temp = nil;
     
     
-    for (ItemModel * model in self.data)
+    for (ItemModel * oldModel in self.data)
     {
-        if ([model.id isEqualToString:newModel.id])
+        if ([oldModel.id isEqualToString:model.id])
         {
-            temp = model;
+            temp = oldModel;
             break;
         }
     }
@@ -128,8 +136,6 @@
         return;
     }
     
-    // 增加数据之前需要做统一优先级处理
-    [newModel balanceProperty];
     [self.data addObject:newModel];
     [self.tv reloadData];
     
