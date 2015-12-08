@@ -58,10 +58,10 @@
         self.itemName = [rowDict objectForKey:@"itemName"];
         
         // 开始时间
-        self.startTime = [Utils stringToDate:[rowDict objectForKey:@"startTime"] withFormat:@"yyyy-MM-dd HH:mm:ss"];
+        self.startTime = [Utils stringToDate:[rowDict objectForKey:@"startTime"] withFormat:@"yyyy-MM-dd HH:mm"];
         
         // 结束时间
-        self.endTime = [Utils stringToDate:[rowDict objectForKey:@"endTime"] withFormat:@"yyyy-MM-dd HH:mm:ss"];
+        self.endTime = [Utils stringToDate:[rowDict objectForKey:@"endTime"] withFormat:@"yyyy-MM-dd HH:mm"];
                         self.where = [rowDict objectForKey:@"address"];
         
         // 优先级
